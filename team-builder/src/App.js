@@ -15,7 +15,7 @@ function App() {
     }]);
   }
 
-  const updateMemberInfo = (memberToUpdate) => {
+  const updateMemberInfo = memberToUpdate => {
     setMembers(currentMembers => 
       currentMembers.map(element => 
         element.id === memberToUpdate.id ? 

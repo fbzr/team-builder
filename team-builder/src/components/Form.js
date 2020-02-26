@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
 const Form = ({ addNewMember, memberToEdit, updateMemberInfo, clearMemberToEdit }) => {
-    const [member, setMember] = useState({
+    const newMemberObj = {
         name: '',
         email: '',
         role: '',
         id: ''
-    });
+    }
+    const [member, setMember] = useState(newMemberObj);
 
     useEffect(() => {
         if(memberToEdit) {
@@ -29,12 +30,13 @@ const Form = ({ addNewMember, memberToEdit, updateMemberInfo, clearMemberToEdit 
         }
          
         clearMemberToEdit();  
+        setMember(newMemberObj)
     }
 
     return (
         <form onSubmit={submitForm}>
             <label htmlFor='name'>Name:</label>
-            <input id='name' type='text' onChange={handleChanges} value={member ? member.name : ''} />
+            <input id='name' type='text' onChange={handleChanges} value={ member.name } />
             <label htmlFor='email'>Email:</label>
             <input id='email' type='email' onChange={handleChanges} value={member ? member.email : ''} />
             <label htmlFor='role'>Role:</label>
