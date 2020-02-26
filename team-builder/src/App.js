@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Form from './components/Form';
 
 function App() {
   return (
-    <h1>App</h1>
+    <Fragment>
+      <h1>App</h1>
+      <Form />
+    </Fragment>
   );
 }
 
