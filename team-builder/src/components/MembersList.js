@@ -1,20 +1,10 @@
-import React from 'react'
-
-const MemberInfo = ({ member }) => {
-    const { name, email, role } = member;
-    return (
-        <div>
-            <p>Name: {name}</p>
-            <p>Email: {email}</p>
-            <p>Role: {role}</p>
-        </div>
-    );
-}
+import React from 'react';
+import MemberInfo from './MemberInfo';
 
 const MembersList = ({ members }) => {
     return (
         <div>
-            <h1>Members List</h1>
+            {members.length > 0 ? <h1>Members List</h1> : null}
             { members.map((member, i) => <MemberInfo member={member} key={i} />) }
         </div>
     )

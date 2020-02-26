@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
 const Form = ({ addNewMember }) => {
-    const [newMember, setNewMember] = useState({
+    const newMemberObj = {
         name: '',
         email: '',
         role: ''
-    })
+    }
+    const [newMember, setNewMember] = useState(newMemberObj)
 
     const handleChanges = e => {
         setNewMember({...newMember, 
@@ -16,16 +17,17 @@ const Form = ({ addNewMember }) => {
     const submitForm = e => {
         e.preventDefault();
         addNewMember(newMember);
+        setNewMember(newMemberObj);
     }
 
     return (
         <form onSubmit={submitForm}>
             <label htmlFor='name'>Name:</label>
-            <input id='name' type='text' onChange={handleChanges} />
+            <input id='name' type='text' onChange={handleChanges} value={newMember.name} />
             <label htmlFor='email'>Email:</label>
-            <input id='email' type='email' onChange={handleChanges} />
+            <input id='email' type='email' onChange={handleChanges} value={newMember.email} />
             <label htmlFor='role'>Role:</label>
-            <input id='role' type='text' onChange={handleChanges} />
+            <input id='role' type='text' onChange={handleChanges} value={newMember.role} />
             <button type='submit'>Submit</button>
         </form>
     )
