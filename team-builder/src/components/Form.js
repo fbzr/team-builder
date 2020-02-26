@@ -28,9 +28,8 @@ const Form = ({ addNewMember, memberToEdit, updateMemberInfo, clearMemberToEdit 
         } else {
             addNewMember(member); 
         }
-         
         clearMemberToEdit();  
-        setMember(newMemberObj)
+        setMember(newMemberObj);
     }
 
     return (
@@ -38,9 +37,9 @@ const Form = ({ addNewMember, memberToEdit, updateMemberInfo, clearMemberToEdit 
             <label htmlFor='name'>Name:</label>
             <input id='name' type='text' onChange={handleChanges} value={ member.name } />
             <label htmlFor='email'>Email:</label>
-            <input id='email' type='email' onChange={handleChanges} value={member ? member.email : ''} />
+            <input id='email' type='email' onChange={handleChanges} value={ member.email } />
             <label htmlFor='role'>Role:</label>
-            <input id='role' type='text' onChange={handleChanges} value={member ? member.role : ''} />
+            <input id='role' type='text' onChange={handleChanges} value={ member.role } />
             <button type='submit'>Submit</button>
         </form>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MemberInfo = ({ member, editMember }) => {
-    const { name, email, role, id } = member;
+    const { name, email, role } = member;
 
     const editInfo = e => {
         e.preventDefault();
