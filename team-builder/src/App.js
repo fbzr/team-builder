@@ -4,6 +4,7 @@ import MembersList from './components/MembersList';
 
 function App() {
   const [members, setMembers] = useState([]);
+  const [memberToEdit, setMemberToEdit] = useState();
   
   const addMember = ({ name, email, role }) => {
     setMembers([...members, {
@@ -13,11 +14,16 @@ function App() {
     }]);
   }
 
+  
+  const editMember = (member) => {
+    setMemberToEdit(member);
+  }
+
   return (
     <Fragment>
       <h1>App</h1>
-      <MembersList members={members} />
-      <Form addNewMember={addMember} />
+      <MembersList members={members} editMember={editMember} />
+      <Form addNewMember={addMember} memberToEdit={memberToEdit} />
     </Fragment>
   );
 }

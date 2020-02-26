@@ -1,11 +1,11 @@
 import React from 'react';
 
-const MemberInfo = ({ member }) => {
+const MemberInfo = ({ member, editMember }) => {
     const { name, email, role } = member;
 
     const editInfo = e => {
         e.preventDefault();
-        console.log('edit clicked');
+        editMember(member);
     }
     return (
         <div>
