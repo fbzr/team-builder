@@ -1,10 +1,15 @@
 import React from 'react'
 
-const Form = () => {
+const Form = ({ addMember }) => {
     return (
-        <div>
-            Form
-        </div>
+        <form>
+            <label htmlFor='name'>Name:</label>
+            <input id='name' type='text' />
+            <label htmlFor='email'>Email:</label>
+            <input id='email' type='email' />
+            <label htmlFor='role'>Role:</label>
+            <input id='role' type='text' />
+        </form>
     )
 }
 
