@@ -1,37 +1,44 @@
 import React, { useState, useEffect } from 'react'
 
-const Form = ({ addNewMember, memberToEdit }) => {
-    const [newMember, setNewMember] = useState();
+const Form = ({ addNewMember, memberToEdit, updateMemberInfo, clearMemberToEdit }) => {
+    const [member, setMember] = useState({
+        name: '',
+        email: '',
+        role: '',
+        id: ''
+    });
 
     useEffect(() => {
-        setNewMember(memberToEdit);
+        if(memberToEdit) {
+            setMember(memberToEdit);
+        }
     }, [memberToEdit]);
 
     const handleChanges = e => {
-        setNewMember({...newMember, 
+        setMember({...member, 
            [e.target.id]: e.target.value
         });
     }
 
     const submitForm = e => {
         e.preventDefault();
-        debugger
-        addNewMember(newMember);
-        setNewMember({
-            name: '',
-            email: '',
-            role: ''
-        });
+        if(memberToEdit) {
+            updateMemberInfo(member);
+        } else {
+            addNewMember(member); 
+        }
+         
+        clearMemberToEdit();  
     }
 
     return (
         <form onSubmit={submitForm}>
             <label htmlFor='name'>Name:</label>
-            <input id='name' type='text' onChange={handleChanges} value={newMember ? newMember.name : ''} />
+            <input id='name' type='text' onChange={handleChanges} value={member ? member.name : ''} />
             <label htmlFor='email'>Email:</label>
-            <input id='email' type='email' onChange={handleChanges} value={newMember ? newMember.email : ''} />
+            <input id='email' type='email' onChange={handleChanges} value={member ? member.email : ''} />
             <label htmlFor='role'>Role:</label>
-            <input id='role' type='text' onChange={handleChanges} value={newMember ? newMember.role : ''} />
+            <input id='role' type='text' onChange={handleChanges} value={member ? member.role : ''} />
             <button type='submit'>Submit</button>
         </form>
     )

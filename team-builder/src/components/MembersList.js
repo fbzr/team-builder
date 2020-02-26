@@ -5,7 +5,7 @@ const MembersList = ({ members, editMember }) => {
     return (
         <div>
             {members.length > 0 ? <h1>Members List</h1> : null}
-            { members.map((member, i) => <MemberInfo member={member} key={i} editMember={editMember} />) }
+            { members.map((member) => <MemberInfo member={member} key={member.id} editMember={editMember} />) }
         </div>
     )
 }

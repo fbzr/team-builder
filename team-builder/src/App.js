@@ -5,13 +5,29 @@ import MembersList from './components/MembersList';
 function App() {
   const [members, setMembers] = useState([]);
   const [memberToEdit, setMemberToEdit] = useState();
-  
-  const addMember = ({ name, email, role }) => {
+
+  const addMember = ({ name, email, role, id }) => {
     setMembers([...members, {
       name,
       email,
-      role
+      role,
+      id: members.length + 1
     }]);
+  }
+
+  const updateMemberInfo = (memberToUpdate) => {
+    setMembers(currentMembers => 
+      currentMembers.map(element => 
+        element.id === memberToUpdate.id ? 
+        { ...element, 
+          name: memberToUpdate.name,
+          email: memberToUpdate.email,
+          role: memberToUpdate.role
+        } 
+        : 
+        element
+      )
+    );
   }
 
   
@@ -19,11 +35,20 @@ function App() {
     setMemberToEdit(member);
   }
 
+  const clearMemberToEdit = () => {
+    setMemberToEdit();
+  }
+
   return (
     <Fragment>
       <h1>App</h1>
       <MembersList members={members} editMember={editMember} />
-      <Form addNewMember={addMember} memberToEdit={memberToEdit} />
+      <Form 
+        addNewMember={addMember} 
+        memberToEdit={memberToEdit} 
+        clearMemberToEdit={clearMemberToEdit} 
+        updateMemberInfo={updateMemberInfo} 
+      />
     </Fragment>
   );
 }
