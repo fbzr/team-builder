@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const Form = ({ addMember }) => {
+const Form = ({ addNewMember }) => {
+    const [newMember, setNewMember] = useState({
+        name: '',
+        email: '',
+        role: ''
+    })
+
+    const handleChanges = e => {
+        setNewMember({...newMember, 
+           [e.target.id]: e.target.value
+        });
+    }
+
+    const submitForm = e => {
+        e.preventDefault();
+        addNewMember(newMember);
+    }
+
     return (
-        <form>
+        <form onSubmit={submitForm}>
             <label htmlFor='name'>Name:</label>
-            <input id='name' type='text' />
+            <input id='name' type='text' onChange={handleChanges} />
             <label htmlFor='email'>Email:</label>
-            <input id='email' type='email' />
+            <input id='email' type='email' onChange={handleChanges} />
             <label htmlFor='role'>Role:</label>
-            <input id='role' type='text' />
+            <input id='role' type='text' onChange={handleChanges} />
+            <button type='submit'>Submit</button>
         </form>
     )
 }
